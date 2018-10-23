@@ -28,7 +28,7 @@ setup(
     packages=['reinhardt'],
     include_package_data=True,
     package_data={
-        'toolkit': [
+        'reinhardt': [
             '*.py',
             'forms/*.py',
             'models/*.py',
