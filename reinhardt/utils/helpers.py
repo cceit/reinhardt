@@ -109,3 +109,10 @@ def hasfield(model, field_name):
             model_fields = related_field.related_model._meta.fields
 
     return False
+
+
+def replace_key(old_key, new_key, dictionary):
+    if old_key in dictionary:
+        value = dictionary.pop(old_key)
+        dictionary[new_key] = value
+    return dictionary

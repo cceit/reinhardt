@@ -18,16 +18,16 @@ class ModelPermissionsMixin(object):
         """
         raise NotImplementedError
 
+    def can_edit(self, user_obj):
+        """
+        Authorizes instance update permission - Instance (Row) Level
+        """
+        raise NotImplementedError
+
     @classmethod
     def can_add(cls, user_obj):
         """
         Authorizes instance creation permission - Class (Table) Level
-        """
-        raise NotImplementedError
-
-    def can_edit(self, user_obj):
-        """
-        Authorizes instance update permission - Instance (Row) Level
         """
         raise NotImplementedError
 
