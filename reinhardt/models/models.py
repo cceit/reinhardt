@@ -1,7 +1,7 @@
 from cuser.fields import CurrentUserField
 from django.db.models import Model, DateTimeField
 
-from utils.helpers import get_child
+from reinhardt.utils import get_child
 from .managers import ObjectManager
 from .mixins import ModelPermissionsMixin
 
