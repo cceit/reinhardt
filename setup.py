@@ -8,7 +8,7 @@ setup(
     author='University of Oklahoma - College of Continuing Education - IT',
     license='BSD',
     install_requires=[
-        "django-cuser",
+        "django-currentuser",
         "arrow",
         "openpyxl",
     ],

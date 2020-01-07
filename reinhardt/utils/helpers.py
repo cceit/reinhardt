@@ -4,7 +4,7 @@ import unicodedata
 from django.db.models.fields.related import RelatedField
 from django.utils import six
 from django.utils.encoding import force_text
-from django.utils.functional import allow_lazy
+from django.utils.functional import keep_lazy
 from django.utils.safestring import mark_safe, SafeText
 
 
@@ -32,7 +32,7 @@ def snakify(value):
     return mark_safe(re.sub('[-\s]+', '_', value))
 
 
-snakify = allow_lazy(snakify, six.text_type, SafeText)
+snakify = keep_lazy(snakify, six.text_type, SafeText)
 
 
 def get_child(obj):
