@@ -1,0 +1,12 @@
+<li>
+    <a>
+        <span class="nav-caret"><i class="fa fa-caret-down"></i></span>
+        <span class="nav-icon"><i class="fa fa-align-left"></i></span>
+        <span class="nav-text">{{ text }}</span>
+    </a>
+    <ul class="nav-sub">
+        {% for link in links %}
+            {% include 'apply/sidebar/_nested_link.html' with link=link %}
+        {% endfor %}
+    </ul>
+</li>

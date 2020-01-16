@@ -11,6 +11,7 @@ setup(
         "django-currentuser",
         "arrow",
         "openpyxl",
+        "django-tables2",
     ],
     classifiers=[
         'Development Status :: 0.1a',
