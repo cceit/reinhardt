@@ -35,7 +35,7 @@ setup(
             'models/*.py',
             'utils/*.py',
             'views/*.py',
-            'templates/*.html'
+            'templates/*'
         ],
     },
     zip_safe=False,
