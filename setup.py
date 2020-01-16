@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name="reinhardt",
@@ -26,17 +26,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         ],
     url='https://github.com/cceit/django-dx',
-    packages=['reinhardt'],
+    packages=find_packages(),
     include_package_data=True,
-    package_data={
-        'reinhardt': [
-            '*.py',
-            'forms/*.py',
-            'models/*.py',
-            'utils/*.py',
-            'views/*.py',
-            'templates/*'
-        ],
-    },
     zip_safe=False,
 )
