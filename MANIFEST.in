@@ -1,0 +1,6 @@
+include README.md
+include LICENSE.md
+recurse-include reinhardt/templates *.html
+recurse-include reinhardt/static/reinhardt *
+global-exclude __pycache__
+global-exclude *.py[co]
