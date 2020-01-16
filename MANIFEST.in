@@ -1,6 +1,5 @@
 include README.md
 include LICENSE.md
-graft reinhardt/templates
-graft reinhardt/static
+graft reinhardt
 global-exclude __pycache__
 global-exclude *.py[co]
