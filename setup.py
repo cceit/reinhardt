@@ -8,10 +8,12 @@ setup(
     author='University of Oklahoma - College of Continuing Education - IT',
     license='BSD',
     install_requires=[
-        "django-currentuser",
-        "arrow",
-        "openpyxl",
-        "django-tables2",
+        "django-currentuser>=0.4.2",
+        "arrow>=0.15.5",
+        "openpyxl>=3.0.3",
+        "django-tables2>=2.2.1",
+        "django-crispy-forms>=1.8.1",
+        "rules>=2.2",
     ],
     classifiers=[
         'Development Status :: 0.1a',

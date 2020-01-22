@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n crispy_forms_tags %}
+
+{% block content %}
+    <div class="box padding">
+        <div class="row">
+            {% if helper %}
+                {% crispy form %}
+            {% else %}
+                <form action="" method="{{ form_method|default:'POST' }}" style="padding: 20px;width:100%;" enctype="multipart/form-data">{% csrf_token %}
+
+                    <span class="required-warning">*</span> - {% trans "indicates a required field." %}<br>
+                    <span class="glyphicon glyphicon-question-sign" style="font-size: 12pt"></span> - {% trans "indicates additional information." %}
+                    <div class="form-content">
+                        {{ form|crispy }}
+                    </div>
+                    <div class="row submit-content">
+                        <div class="col-sm-12" style="text-align: center">
+                            <button type="submit" name="submit" class="btn primary action">
+                                <i class="{{ form.submit_icon|default:'glyphicon glyphicon-floppy-disk' }}"></i> {{ form.submit_text|default:'Save' }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

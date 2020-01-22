@@ -3,10 +3,10 @@ from django_currentuser.db.models import CurrentUserField
 
 from reinhardt.utils import get_child
 from .managers import ObjectManager
-from .mixins import ModelPermissionsMixin
+from rules.contrib.models import RulesModelBase, RulesModelMixin
 
 
-class AuditModel(ModelPermissionsMixin, Model):
+class AuditModel(RulesModelMixin, Model, metaclass=RulesModelBase):
     """
     .. note:: - Requires **django-currentuser**
 
