@@ -1,4 +1,6 @@
 /docs/build/
 .idea/
+.eggs/*
+.tox/*
 *.pyc
 env/
