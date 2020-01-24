@@ -1,6 +1,6 @@
 # Reinhardt
 
-[![build-status-image]][travis]
+[![Build Status](https://travis-ci.com/cceit/reinhardt.svg?branch=master)](https://travis-ci.com/cceit/reinhardt)
 
 A collection of Django helpers designed for ease-of-use and rapid development
 
