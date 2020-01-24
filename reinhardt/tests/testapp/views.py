@@ -1,4 +1,4 @@
-from reinhardt.views import ReinhardtCreateView, ReinhardtListView
+from reinhardt.views import ReinhardtCreateView, ReinhardtListView, ReinhardtUpdateView
 from reinhardt.tests.testapp.models import TestModel, TestRestrictedModel, TestStaffOnlyModel
 
 
@@ -25,5 +25,20 @@ class TestRestrictedCreateView(ReinhardtCreateView):
 
 
 class TestStaffOnlyCreateView(ReinhardtCreateView):
+    model = TestStaffOnlyModel
+    fields = ('test_field',)
+
+
+class TestUpdateView(ReinhardtUpdateView):
+    model = TestModel
+    fields = ('test_field', )
+
+
+class TestRestrictedUpdateView(ReinhardtUpdateView):
+    model = TestRestrictedModel
+    fields = ('test_field',)
+
+
+class TestStaffOnlyUpdateView(ReinhardtUpdateView):
     model = TestStaffOnlyModel
     fields = ('test_field',)

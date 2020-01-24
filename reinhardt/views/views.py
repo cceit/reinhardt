@@ -51,3 +51,7 @@ class ReinhardtListView(ReinhardtView, SingleTableView):
 
 class ReinhardtCreateView(ReinhardtView, CreateView):
     template_name = 'apply/form.html'
+
+
+class ReinhardtUpdateView(ReinhardtView, UpdateView):
+    template_name = 'apply/form.html'
