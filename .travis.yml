@@ -22,7 +22,6 @@ matrix:
           - python setup.py bdist_wheel
           - rm -r reinhardt.egg-info  # see #6139
           - tox --installpkg ./dist/reinhardt-*.whl
-          - python manage.py migrate
           - tox  # test sdist
 
     allow_failures:
@@ -32,6 +31,7 @@ install:
     - pip install tox tox-venv tox-travis
 
 script:
+    - python manage.py migrate
     - tox
 
 after_success:
