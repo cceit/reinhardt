@@ -52,7 +52,3 @@ class TestViewPermissions(TestCase):
             assert response.status_code == 200, 'Expected to be granted access, but was not'
         else:
             assert response.status_code == 403, 'Expected to be denied access, but was not.'
-
-
-if __name__ == '__main__':
-    unittest.main()
