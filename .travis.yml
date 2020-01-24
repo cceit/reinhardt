@@ -12,14 +12,6 @@ matrix:
       - { python: "3.6", env: DJANGO=3.0}
       - { python: "3.6", env: DJANGO=master}
 
-      - python: "3.6"
-        env: TOXENV=dist
-        script:
-          - python setup.py bdist_wheel
-          - rm -r reinhardt.egg-info  # see #6139
-          - tox --installpkg ./dist/reinhardt-*.whl
-          - tox  # test sdist
-
 install:
     - pip install tox tox-venv tox-travis
 
