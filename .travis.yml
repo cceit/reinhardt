@@ -21,8 +21,6 @@ install:
 
 before_script:
   - psql -c "CREATE DATABASE travisci;" -U postgres
-  - django-admin makemigrations reinhardt.tests.testapp
-  - django-admin migrate reinhardt.tests.testapp
 
 script:
     - tox
