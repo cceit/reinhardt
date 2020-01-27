@@ -3,8 +3,12 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'travisci',
+        'USER':     'postgres',
+        'PASSWORD': '',
+        'HOST':     'localhost',
+        'PORT':     '',
     }
 }
 SITE_ID = 1

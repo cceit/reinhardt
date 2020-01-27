@@ -1,6 +1,8 @@
 language: python
 cache: pip
 dist: xenial
+services:
+  postgresql
 matrix:
     fast_finish: false
     include:
@@ -15,6 +17,9 @@ matrix:
 install:
     - pip install tox tox-venv tox-travis
 
+before_script:
+  - psql -c "CREATE DATABASE travisci;" -U postgres
+  -
 script:
     - tox
 
