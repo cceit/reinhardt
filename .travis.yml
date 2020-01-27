@@ -15,11 +15,12 @@ matrix:
 
 
 install:
-    - pip install tox tox-venv tox-travis psycopg2
+  - sudo apt-get install build-dep python-psycopg2
+  - pip install tox tox-venv tox-travis psycopg2
 
 before_script:
   - psql -c "CREATE DATABASE travisci;" -U postgres
-  -
+
 script:
     - tox
 
