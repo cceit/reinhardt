@@ -8,6 +8,8 @@ from reinhardt.tests.testapp.models import TestModel, TestRestrictedModel, TestS
 
 
 class TestViewPermissions(TestCase):
+    databases = {'default'}
+
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(username='jacob', email='jacob@test.com', password='top_secret')
