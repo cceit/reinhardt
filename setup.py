@@ -14,6 +14,7 @@ setup(
         "django-tables2>=2.2.1",
         "django-crispy-forms>=1.8.1",
         "rules>=2.2",
+        "psycopg2",
     ],
     classifiers=[
         'Development Status :: 0.1a',
