@@ -14,7 +14,7 @@ matrix:
 #      - { python: "3.6", env: DJANGO=master}
 
 before_install:
-  - sudo apt-get install build-dep python-psycopg2
+  - "sudo apt-get install build-dep python-psycopg2"
 
 install:
   - pip install tox tox-venv tox-travis psycopg2
