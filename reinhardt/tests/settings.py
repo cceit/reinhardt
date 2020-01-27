@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'django_tables2',
     'crispy_forms',
     'reinhardt',
-    'reinhardt.tests',
+    'reinhardt.tests.testapp',
     'rules',
 ]
 PASSWORD_HASHERS = (
