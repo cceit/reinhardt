@@ -3,12 +3,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'travisci',
-        'USER':     'postgres',
-        'PASSWORD': '',
-        'HOST':     'localhost',
-        'PORT':     '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:'
     }
 }
 SITE_ID = 1
@@ -50,7 +46,6 @@ INSTALLED_APPS = [
     'django_tables2',
     'crispy_forms',
     'reinhardt',
-    'reinhardt.tests.testapp',
     'rules',
 ]
 PASSWORD_HASHERS = (
