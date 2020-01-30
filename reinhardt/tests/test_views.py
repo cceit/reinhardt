@@ -45,6 +45,17 @@ class TestViewPermissions(TestCase):
         self.view_permission_tester(reverse('staff-only-update-view', kwargs={'pk': test_staff_only_pk}), self.user, False)
         self.view_permission_tester(reverse('staff-only-update-view', kwargs={'pk': test_staff_only_pk}), self.staff_user, True)
 
+    def test_detail_view_permissions(self):
+        test_pk = self.test_model_instance.pk
+        test_restricted_pk = self.test_restricted_model_instance.pk
+        test_staff_only_pk = self.test_staff_only_model_instance.pk
+        self.view_permission_tester(reverse('details', kwargs={'pk': test_pk}), self.user, True)
+        self.view_permission_tester(reverse('details', kwargs={'pk': test_pk}), self.staff_user, True)
+        self.view_permission_tester(reverse('restricted-details', kwargs={'pk': test_restricted_pk}), self.user, False)
+        self.view_permission_tester(reverse('restricted-details', kwargs={'pk': test_restricted_pk}), self.staff_user, False)
+        self.view_permission_tester(reverse('staff-only-details', kwargs={'pk': test_staff_only_pk}), self.user, False)
+        self.view_permission_tester(reverse('staff-only-details', kwargs={'pk': test_staff_only_pk}), self.staff_user, True)
+
     def view_permission_tester(self, url, user, permitted):
         self.client.force_login(user)
         response = self.client.get(url)
