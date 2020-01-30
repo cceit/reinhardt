@@ -49,20 +49,20 @@ class TestStaffOnlyUpdateView(ReinhardtUpdateView):
 
 class TestDetailView(ReinhardtDetailView):
     model = TestModel
-    fields = (
+    detail_fields = (
         ('Test Field', 'test_field'),
     )
 
 
 class TestRestrictedDetailView(ReinhardtDetailView):
     model = TestRestrictedModel
-    fields = (
+    detail_fields = (
         ('Test Field', 'test_field'),
     )
 
 
 class TestStaffOnlyDetailView(ReinhardtDetailView):
     model = TestStaffOnlyModel
-    fields = (
+    detail_fields = (
         ('Test Field', 'test_field'),
     )
