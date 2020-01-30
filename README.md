@@ -29,6 +29,12 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend'
 )
 ```
+
+If you want to enforce db_table_name fields be explicitly specified for all models that extend AuditModel, add the REQUIRE_DB_TABLE_NAMES setting to settings.py.
+
+```python
+REQUIRE_DB_TABLE_NAMES = True
+```
     
 # Models
 

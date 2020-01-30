@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 from django.db.models import Model, DateTimeField
 from django_currentuser.db.models import CurrentUserField
 
@@ -6,7 +8,24 @@ from .managers import ObjectManager
 from rules.contrib.models import RulesModelBase, RulesModelMixin
 
 
-class AuditModel(RulesModelMixin, Model, metaclass=RulesModelBase):
+class ReinhardtModelBase(RulesModelBase):
+
+    def __new__(cls, name, bases, attrs, **kwargs):
+        # Ensure initialization is only performed for subclasses of Model
+        # (excluding Model class itself).
+        parents = [b for b in bases if isinstance(b, ReinhardtModelBase)]
+        if not parents or not getattr(settings, 'REQUIRE_DB_TABLE_NAMES', False):
+            return super().__new__(cls, name, bases, attrs, **kwargs)
+
+        model_meta = attrs.get("Meta")
+        if not hasattr(model_meta, "db_table"):
+            module = attrs.get('__module__')
+            raise ImproperlyConfigured("%s.%s does not declare a db_table name." % (module, name))
+
+        return super().__new__(cls, name, bases, attrs, **kwargs)
+
+
+class AuditModel(RulesModelMixin, Model, metaclass=ReinhardtModelBase):
     """
     .. note:: - Requires **django-currentuser**
 
