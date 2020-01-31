@@ -8,46 +8,55 @@ from reinhardt.tests.testapp.models import TestModel, TestRestrictedModel, TestS
 # List Views
 class TestListView(ReinhardtListView):
     model = TestModel
+    page_title = 'List'
 
 
 class TestRestrictedListView(ReinhardtListView):
     model = TestRestrictedModel
+    page_title = 'Restricted List'
 
 
 class TestStaffOnlyListView(ReinhardtListView):
     model = TestStaffOnlyModel
+    page_title = 'Staff Only List'
 
 
 # Create Views
 class TestCreateView(ReinhardtCreateView):
     model = TestModel
     fields = ('test_field', )
+    page_title = 'Create'
 
 
 class TestRestrictedCreateView(ReinhardtCreateView):
     model = TestRestrictedModel
     fields = ('test_field',)
+    page_title = 'Restricted Create'
 
 
 class TestStaffOnlyCreateView(ReinhardtCreateView):
     model = TestStaffOnlyModel
     fields = ('test_field',)
+    page_title = 'Staff Only Create'
 
 
 # Update Views
 class TestUpdateView(ReinhardtUpdateView):
     model = TestModel
     fields = ('test_field', )
+    page_title = 'Update'
 
 
 class TestRestrictedUpdateView(ReinhardtUpdateView):
     model = TestRestrictedModel
     fields = ('test_field',)
+    page_title = 'Restricted Update'
 
 
 class TestStaffOnlyUpdateView(ReinhardtUpdateView):
     model = TestStaffOnlyModel
     fields = ('test_field',)
+    page_title = 'Staff Only Update'
 
 
 class TestDetailView(ReinhardtDetailView):
@@ -55,6 +64,7 @@ class TestDetailView(ReinhardtDetailView):
     detail_fields = (
         ('Test Field', 'test_field'),
     )
+    page_title = 'Detail'
 
 
 class TestRestrictedDetailView(ReinhardtDetailView):
@@ -62,6 +72,7 @@ class TestRestrictedDetailView(ReinhardtDetailView):
     detail_fields = (
         ('Test Field', 'test_field'),
     )
+    page_title = 'Restricted Detail'
 
 
 class TestStaffOnlyDetailView(ReinhardtDetailView):
@@ -69,6 +80,7 @@ class TestStaffOnlyDetailView(ReinhardtDetailView):
     detail_fields = (
         ('Test Field', 'test_field'),
     )
+    page_title = 'Staff Only Detail'
 
 
 class TestDeleteView(ReinhardtDeleteView):
@@ -76,6 +88,7 @@ class TestDeleteView(ReinhardtDeleteView):
     detail_fields = (
         ('Test Field', 'test_field'),
     )
+    page_title = 'Delete'
 
     def get_success_url(self):
         return reverse('list-view')
@@ -86,6 +99,7 @@ class TestRestrictedDeleteView(ReinhardtDeleteView):
     detail_fields = (
         ('Test Field', 'test_field'),
     )
+    page_title = 'Restricted Delete'
 
     def get_success_url(self):
         return reverse('list-view')
@@ -96,6 +110,7 @@ class TestStaffOnlyDeleteView(ReinhardtDeleteView):
     detail_fields = (
         ('Test Field', 'test_field'),
     )
+    page_title = 'Staff Only Delete'
 
     def get_success_url(self):
         return reverse('list-view')
