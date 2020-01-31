@@ -1,7 +1,8 @@
 from django.urls import path
 from reinhardt.tests.testapp.views import TestListView, TestRestrictedListView, TestStaffOnlyListView, TestCreateView, \
     TestRestrictedCreateView, TestStaffOnlyCreateView, TestRestrictedUpdateView, TestStaffOnlyUpdateView, \
-    TestUpdateView, TestRestrictedDetailView, TestDetailView, TestStaffOnlyDetailView
+    TestUpdateView, TestRestrictedDetailView, TestDetailView, TestStaffOnlyDetailView, TestStaffOnlyDeleteView, \
+    TestRestrictedDeleteView, TestDeleteView
 
 urlpatterns = [
     path('list/', TestListView.as_view(), name='list-view'),
@@ -16,4 +17,7 @@ urlpatterns = [
     path('update/<int:pk>/', TestUpdateView.as_view(), name='update-view'),
     path('restricted-update/<int:pk>/', TestRestrictedUpdateView.as_view(), name='restricted-update-view'),
     path('staff-only-update/<int:pk>/', TestStaffOnlyUpdateView.as_view(), name='staff-only-update-view'),
+    path('delete/<int:pk>/', TestDeleteView.as_view(), name='delete-view'),
+    path('restricted-delete/<int:pk>/', TestRestrictedDeleteView.as_view(), name='restricted-delete-view'),
+    path('staff-only-delete/<int:pk>/', TestStaffOnlyDeleteView.as_view(), name='staff-only-delete-view'),
 ]

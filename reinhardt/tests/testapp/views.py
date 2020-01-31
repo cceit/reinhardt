@@ -1,4 +1,7 @@
-from reinhardt.views import ReinhardtCreateView, ReinhardtListView, ReinhardtUpdateView, ReinhardtDetailView
+from django.urls import reverse
+
+from reinhardt.views import ReinhardtCreateView, ReinhardtListView, ReinhardtUpdateView, ReinhardtDetailView, \
+    ReinhardtDeleteView
 from reinhardt.tests.testapp.models import TestModel, TestRestrictedModel, TestStaffOnlyModel
 
 
@@ -66,3 +69,27 @@ class TestStaffOnlyDetailView(ReinhardtDetailView):
     detail_fields = (
         ('Test Field', 'test_field'),
     )
+
+
+class TestDeleteView(ReinhardtDeleteView):
+    model = TestModel
+    detail_fields = (
+        ('Test Field', 'test_field'),
+    )
+    success_url = reverse('list-view')
+
+
+class TestRestrictedDeleteView(ReinhardtDeleteView):
+    model = TestRestrictedModel
+    detail_fields = (
+        ('Test Field', 'test_field'),
+    )
+    success_url = reverse('list-view')
+
+
+class TestStaffOnlyDeleteView(ReinhardtDeleteView):
+    model = TestStaffOnlyModel
+    detail_fields = (
+        ('Test Field', 'test_field'),
+    )
+    success_url = reverse('list-view')

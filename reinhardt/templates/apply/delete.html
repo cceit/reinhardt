@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="box padding">
+        <p>This action is irreversible. Are you sure you want to delete this {{ object_name }}?</p>
+
+        {% if objs_to_be_deleted %}
+            <p>The following objects will also be deleted:</p>
+            {{ objs_to_be_deleted|unordered_list }}
+        {% endif %}
+        <form action="" method="POST">{% csrf_token %}
+            <br />
+            <button name='submit' id='submit' type="submit" class="btn primary">
+                <i class="glyphicon glyphicon-ok"></i> Yes
+            </button>
+            <a href="{{ no_url_path }}" class="btn danger">
+                <i class="glyphicon glyphicon-remove"></i> No
+            </a>
+        </form>
+    </div>
+{% endblock %}
