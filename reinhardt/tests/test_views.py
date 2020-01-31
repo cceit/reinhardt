@@ -74,3 +74,16 @@ class TestViewPermissions(TestCase):
             assert response.status_code == 200, 'Expected to be granted access, but was not'
         else:
             assert response.status_code == 403, 'Expected to be denied access, but was not.'
+
+
+class TestViewActions(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(username='jacob', email='jacob@test.com', password='top_secret')
+        self.test_model_instance = TestModel.objects.create(test_field='test')
+
+    def test_list_view(self):
+        url = reverse('list-view')
+        response = self.client.get(url)
+        assert response.context['objects']
+        assert response.context['page_title']
