@@ -28,7 +28,7 @@ class ReinhardtUpdateView(ReinhardtView, UpdateView):
     template_name = 'apply/form.html'
 
 
-class ReinhardtDetailView(ViewMetaMixin, ReinhardtView, DetailView):
+class ReinhardtDetailView(ReinhardtView, DetailView):
     template_name = 'apply/detail.html'
 
     def get_context_data(self, **kwargs):
