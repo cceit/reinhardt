@@ -5,6 +5,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 
 from reinhardt.tests.testapp.models import TestModel, TestRestrictedModel, TestStaffOnlyModel
+from reinhardt.tests.testapp.views import TestListView
 
 
 class TestViewPermissions(TestCase):
@@ -84,4 +85,5 @@ class TestViewActions(TestCase):
     def test_list_view(self):
         url = reverse('list-view')
         response = self.client.get(url)
-        assert response.context['page_title']
+        self.assertContains(response, TestListView().page_title)
+
