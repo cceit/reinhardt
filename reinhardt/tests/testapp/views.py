@@ -76,7 +76,9 @@ class TestDeleteView(ReinhardtDeleteView):
     detail_fields = (
         ('Test Field', 'test_field'),
     )
-    success_url = reverse('list-view')
+
+    def get_success_url(self):
+        return reverse('list-view')
 
 
 class TestRestrictedDeleteView(ReinhardtDeleteView):
@@ -84,7 +86,9 @@ class TestRestrictedDeleteView(ReinhardtDeleteView):
     detail_fields = (
         ('Test Field', 'test_field'),
     )
-    success_url = reverse('list-view')
+
+    def get_success_url(self):
+        return reverse('list-view')
 
 
 class TestStaffOnlyDeleteView(ReinhardtDeleteView):
@@ -92,4 +96,6 @@ class TestStaffOnlyDeleteView(ReinhardtDeleteView):
     detail_fields = (
         ('Test Field', 'test_field'),
     )
-    success_url = reverse('list-view')
+
+    def get_success_url(self):
+        return reverse('list-view')
