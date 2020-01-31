@@ -78,7 +78,6 @@ class TestViewPermissions(TestCase):
 
 class TestViewActions(TestCase):
     def setUp(self):
-        self.client = Client()
         self.user = User.objects.create_user(username='jacob', email='jacob@test.com', password='top_secret')
         self.test_model_instance = TestModel.objects.create(test_field='test')
 
