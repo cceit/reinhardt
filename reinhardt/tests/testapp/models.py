@@ -1,5 +1,6 @@
 import rules
 from django.db import models
+from django.urls import reverse
 
 from reinhardt.models import AuditModel
 
@@ -15,6 +16,9 @@ class TestModel(AuditModel):
             'view': rules.always_true,
             'view_list': rules.always_true
         }
+
+    def get_absolute_url(self):
+        return reverse('details', kwargs={'pk': self.pk})
 
 
 class TestRestrictedModel(AuditModel):
