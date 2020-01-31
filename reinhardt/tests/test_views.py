@@ -85,5 +85,4 @@ class TestViewActions(TestCase):
     def test_list_view(self):
         url = reverse('list-view')
         response = self.client.get(url)
-        assert response.context['objects']
         assert response.context['page_title']
