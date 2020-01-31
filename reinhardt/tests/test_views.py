@@ -89,7 +89,7 @@ class TestViewActions(TestCase):
         self.assertContains(response, self.test_model_instance.test_field)
 
     def test_detail_view(self):
-        url = reverse('list-view')
+        url = reverse('detail-view')
         response = self.client.get(url)
         self.assertContains(response, TestDetailView().page_title)
         self.assertContains(response, self.test_model_instance.test_field)
