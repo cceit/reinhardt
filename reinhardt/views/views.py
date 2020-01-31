@@ -1,5 +1,6 @@
 from collections import OrderedDict
 
+from django.core.exceptions import ImproperlyConfigured
 from django.views.generic import CreateView, DetailView, DeleteView, UpdateView
 from django_tables2 import SingleTableView
 from reinhardt.views.mixins import ViewMetaMixin, DeleteMetaMixin
@@ -14,6 +15,19 @@ class ReinhardtView(AutoPermissionRequiredMixin):
         (DetailView, "view"),
         (SingleTableView, "view_list"),
     ]
+    page_title = ''
+
+    def get_page_title(self):
+        if not self.page_title:
+            raise ImproperlyConfigured("page_title is not set")
+        return self.page_title
+
+    def get_context_data(self, **kwargs):
+        context = super(ReinhardtView, self).get_context_data(**kwargs)
+        context.update({
+            'page_title': self.get_page_title(),
+        })
+        return context
 
 
 class ReinhardtListView(ReinhardtView, SingleTableView):

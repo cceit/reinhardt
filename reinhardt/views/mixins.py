@@ -9,12 +9,6 @@ class ViewMetaMixin(object):
     Mixin will be used capture optional and required meta data about each view
      that are then passed to the template
     """
-    page_title = ''
-
-    def get_page_title(self):
-        if not self.page_title:
-            raise ImproperlyConfigured("page_title is not set")
-        return self.page_title
 
     def get_detail_fields(self):
         """
@@ -80,7 +74,6 @@ class ViewMetaMixin(object):
         context = super(ViewMetaMixin, self).get_context_data(**kwargs)
         context.update({
             'details': self.get_details(),
-            'page_title': self.get_page_title(),
         })
         return context
 
