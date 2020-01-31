@@ -94,3 +94,8 @@ class TestViewActions(TestCase):
         self.assertContains(response, TestDetailView().page_title)
         self.assertContains(response, self.test_model_instance.test_field)
 
+    def test_create_view(self):
+        url = reverse('create-view')
+        self.client.post(url, data={'test_field': 'updated_text'})
+        self.assertTrue(TestModel.objects.filter(test_field='updated_text').exists())
+
