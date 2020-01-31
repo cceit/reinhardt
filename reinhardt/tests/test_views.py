@@ -86,4 +86,5 @@ class TestViewActions(TestCase):
         url = reverse('list-view')
         response = self.client.get(url)
         self.assertContains(response, TestListView().page_title)
+        self.assertContains(response, self.test_model_instance.test_field)
 
