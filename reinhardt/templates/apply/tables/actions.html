@@ -1,6 +1,27 @@
-<button class="btn btn-info btn-icon btn-sm text-white" rel="tooltip" type="button" data-original-title="" title="">
-    <i class="fa fa-user"></i></button>
-<button class="btn btn-success btn-icon btn-sm text-white" rel="tooltip" type="button" data-original-title="" title="">
-    <i class="fa fa-edit"></i></button>
-<button class="btn btn-danger btn-icon btn-sm text-white" rel="tooltip" type="button" data-original-title="" title="">
-    <i class="fa fa-times"></i></button>
+{% load reinhardt_tags rules %}
+
+{% block view_button %}
+    {% has_obj_perm 'view' user record as can_view %}
+    {% if can_view and record|detail_url %}
+        <a href="{{ record|detail_url }}" class="btn btn-info btn-icon btn-sm text-white" rel="tooltip" type="button" data-original-title="" title="">
+            <i class="fa fa-user"></i></a>
+    {% endif %}
+{% endblock %}
+
+{% block update_button %}
+    {% has_obj_perm 'update' user record as can_update %}
+    {% if can_update and record|update_url %}
+        <a href="{{ record|update_url }}" class="btn btn-success btn-icon btn-sm text-white" rel="tooltip" type="button" data-original-title="" title="">
+            <i class="fa fa-edit"></i></a>
+    {% endif %}
+{% endblock %}
+
+{% block delete_button %}
+    {% has_obj_perm 'delete' user record as can_delete %}
+    {% if can_delete and record|delete_url %}
+        <a href="{{ record|delete_url }}" class="btn btn-danger btn-icon btn-sm text-white" rel="tooltip" type="button" data-original-title="" title="">
+            <i class="fa fa-times"></i></a>
+    {% endif %}
+{% endblock %}
+
+{% block extra_buttons %}{% endblock %}

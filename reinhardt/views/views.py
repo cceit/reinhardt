@@ -10,7 +10,7 @@ from rules.contrib.views import AutoPermissionRequiredMixin
 class ReinhardtView(AutoPermissionRequiredMixin):
     permission_type_map = [
         (CreateView, "add"),
-        (UpdateView, "change"),
+        (UpdateView, "update"),
         (DeleteView, "delete"),
         (DetailView, "view"),
         (SingleTableView, "view_list"),

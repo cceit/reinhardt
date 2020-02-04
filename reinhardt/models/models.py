@@ -1,3 +1,4 @@
+import rules
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import Model, DateTimeField
@@ -42,6 +43,13 @@ class AuditModel(RulesModelMixin, Model, metaclass=ReinhardtModelBase):
 
     class Meta:
         abstract = True
+        rules_permissions = {
+            "add": rules.always_true,
+            "update": rules.always_true,
+            "delete": rules.always_true,
+            "view": rules.always_true,
+            "view_list": rules.always_true
+        }
 
     @property
     def child(self):

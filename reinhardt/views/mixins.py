@@ -1,7 +1,6 @@
 from collections import OrderedDict
 
 from django.contrib.admin.utils import NestedObjects
-from django.core.exceptions import ImproperlyConfigured
 
 
 class ViewMetaMixin(object):
