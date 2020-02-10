@@ -87,9 +87,6 @@ class TestStaffOnlyDetailView(ReinhardtDetailView):
 
 class TestDeleteView(ReinhardtDeleteView):
     model = TestModel
-    detail_fields = (
-        ('Test Field', 'test_field'),
-    )
     page_title = 'Delete'
 
     def get_success_url(self):
@@ -98,9 +95,6 @@ class TestDeleteView(ReinhardtDeleteView):
 
 class TestRestrictedDeleteView(ReinhardtDeleteView):
     model = TestRestrictedModel
-    detail_fields = (
-        ('Test Field', 'test_field'),
-    )
     page_title = 'Restricted Delete'
 
     def get_success_url(self):
@@ -109,9 +103,6 @@ class TestRestrictedDeleteView(ReinhardtDeleteView):
 
 class TestStaffOnlyDeleteView(ReinhardtDeleteView):
     model = TestStaffOnlyModel
-    detail_fields = (
-        ('Test Field', 'test_field'),
-    )
     page_title = 'Staff Only Delete'
 
     def get_success_url(self):

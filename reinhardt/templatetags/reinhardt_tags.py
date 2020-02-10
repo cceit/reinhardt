@@ -33,6 +33,6 @@ def update_url(object):
 def delete_url(object):
     underscored_model_name = '_'.join(object._meta.verbose_name.lower().split(' '))
     try:
-        return reverse(f'update_{underscored_model_name}', kwargs={'pk': object.pk})
+        return reverse(f'delete_{underscored_model_name}', kwargs={'pk': object.pk})
     except NoReverseMatch:
         return None
