@@ -1,5 +1,6 @@
 from django.urls import reverse
 
+from reinhardt.tests.testapp.tables import TestTable
 from reinhardt.views import ReinhardtCreateView, ReinhardtListView, ReinhardtUpdateView, ReinhardtDetailView, \
     ReinhardtDeleteView
 from reinhardt.tests.testapp.models import TestModel, TestRestrictedModel, TestStaffOnlyModel
@@ -8,6 +9,7 @@ from reinhardt.tests.testapp.models import TestModel, TestRestrictedModel, TestS
 # List Views
 class TestListView(ReinhardtListView):
     model = TestModel
+    table_class = TestTable
     page_title = 'List'
 
 
