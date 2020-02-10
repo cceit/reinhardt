@@ -18,7 +18,7 @@ class TestModel(AuditModel):
         }
 
     def get_absolute_url(self):
-        return reverse('view_testmodel', kwargs={'pk': self.pk})
+        return reverse('view_test_model', kwargs={'pk': self.pk})
 
 
 class TestRestrictedModel(AuditModel):
