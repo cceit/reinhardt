@@ -104,3 +104,14 @@ class TestViewActions(TestCase):
         self.client.post(url, data={'test_field': 'updated_text'})
         self.assertTrue(TestModel.objects.filter(test_field='updated_text').exists())
 
+
+class TestListViewRendering(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='jacob', email='jacob@test.com', password='top_secret')
+        self.test_model_instance = TestModel.objects.create(test_field='test')
+
+    def test_detail_view_button(self):
+        url = reverse('list-view')
+        response = self.client.get(url)
+        detail_url = reverse('view_testmodel', kwargs={'pk': self.test_model_instance.pk})
+        self.assertContains(response, detail_url)
