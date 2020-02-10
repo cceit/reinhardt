@@ -50,8 +50,8 @@ class TestViewPermissions(TestCase):
         test_pk = self.test_model_instance.pk
         test_restricted_pk = self.test_restricted_model_instance.pk
         test_staff_only_pk = self.test_staff_only_model_instance.pk
-        self.view_permission_tester(reverse('details', kwargs={'pk': test_pk}), self.user, True)
-        self.view_permission_tester(reverse('details', kwargs={'pk': test_pk}), self.staff_user, True)
+        self.view_permission_tester(reverse('view_testmodel', kwargs={'pk': test_pk}), self.user, True)
+        self.view_permission_tester(reverse('view_testmodel', kwargs={'pk': test_pk}), self.staff_user, True)
         self.view_permission_tester(reverse('restricted-details', kwargs={'pk': test_restricted_pk}), self.user, False)
         self.view_permission_tester(reverse('restricted-details', kwargs={'pk': test_restricted_pk}), self.staff_user, False)
         self.view_permission_tester(reverse('staff-only-details', kwargs={'pk': test_staff_only_pk}), self.user, False)
@@ -89,7 +89,7 @@ class TestViewActions(TestCase):
         self.assertContains(response, self.test_model_instance.test_field)
 
     def test_detail_view(self):
-        url = reverse('details', kwargs={'pk': self.test_model_instance.pk})
+        url = reverse('view_testmodel', kwargs={'pk': self.test_model_instance.pk})
         response = self.client.get(url)
         self.assertContains(response, TestDetailView().page_title)
         self.assertContains(response, self.test_model_instance.test_field)
