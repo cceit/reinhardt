@@ -1,5 +1,6 @@
 import unittest
 
+import django
 from django.contrib.auth.models import User
 from django.test import TestCase, Client
 from django.urls import reverse
@@ -71,10 +72,14 @@ class TestViewPermissions(TestCase):
     def view_permission_tester(self, url, user, permitted):
         self.client.force_login(user)
         response = self.client.get(url)
+
         if permitted:
             assert response.status_code == 200, 'Expected to be granted access, but was not'
         else:
-            assert response.status_code == 403, 'Expected to be denied access, but was not.'
+            if django.VERSION[0] == 2 and django.VERSION[1] == 0:
+                assert response.status_code == 403, 'Expected to be denied access, but was not.'
+            else:
+                assert response.status_code == 302, 'Expected to be redirected, but was not.'
 
 
 class TestViewActions(TestCase):
