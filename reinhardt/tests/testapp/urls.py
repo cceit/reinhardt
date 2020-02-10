@@ -14,10 +14,10 @@ urlpatterns = [
     path('create/', TestCreateView.as_view(), name='create-view'),
     path('restricted-create/', TestRestrictedCreateView.as_view(), name='restricted-create-view'),
     path('staff-only-create/', TestStaffOnlyCreateView.as_view(), name='staff-only-create-view'),
-    path('update/<int:pk>/', TestUpdateView.as_view(), name='update-view'),
+    path('update/<int:pk>/', TestUpdateView.as_view(), name='update_test_model'),
     path('restricted-update/<int:pk>/', TestRestrictedUpdateView.as_view(), name='restricted-update-view'),
     path('staff-only-update/<int:pk>/', TestStaffOnlyUpdateView.as_view(), name='staff-only-update-view'),
-    path('delete/<int:pk>/', TestDeleteView.as_view(), name='delete-view'),
+    path('delete/<int:pk>/', TestDeleteView.as_view(), name='delete_test_model'),
     path('restricted-delete/<int:pk>/', TestRestrictedDeleteView.as_view(), name='restricted-delete-view'),
     path('staff-only-delete/<int:pk>/', TestStaffOnlyDeleteView.as_view(), name='staff-only-delete-view'),
 ]

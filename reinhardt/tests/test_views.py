@@ -39,8 +39,8 @@ class TestViewPermissions(TestCase):
         test_pk = self.test_model_instance.pk
         test_restricted_pk = self.test_restricted_model_instance.pk
         test_staff_only_pk = self.test_staff_only_model_instance.pk
-        self.view_permission_tester(reverse('update-view', kwargs={'pk': test_pk}), self.user, True)
-        self.view_permission_tester(reverse('update-view', kwargs={'pk': test_pk}), self.staff_user, True)
+        self.view_permission_tester(reverse('update_test_model', kwargs={'pk': test_pk}), self.user, True)
+        self.view_permission_tester(reverse('update_test_model', kwargs={'pk': test_pk}), self.staff_user, True)
         self.view_permission_tester(reverse('restricted-update-view', kwargs={'pk': test_restricted_pk}), self.user, False)
         self.view_permission_tester(reverse('restricted-update-view', kwargs={'pk': test_restricted_pk}), self.staff_user, False)
         self.view_permission_tester(reverse('staff-only-update-view', kwargs={'pk': test_staff_only_pk}), self.user, False)
@@ -115,3 +115,15 @@ class TestListViewRendering(TestCase):
         response = self.client.get(url)
         detail_url = reverse('view_test_model', kwargs={'pk': self.test_model_instance.pk})
         self.assertContains(response, detail_url)
+
+    def test_update_view_button(self):
+        url = reverse('list-view')
+        response = self.client.get(url)
+        update_url = reverse('update_test_model', kwargs={'pk': self.test_model_instance.pk})
+        self.assertContains(response, update_url)
+
+    def test_delete_view_button(self):
+        url = reverse('list-view')
+        response = self.client.get(url)
+        delete_url = reverse('delete_test_model', kwargs={'pk': self.test_model_instance.pk})
+        self.assertContains(response, delete_url)
