@@ -100,7 +100,7 @@ class TestViewActions(TestCase):
         self.assertTrue(TestModel.objects.filter(test_field='created_text').exists())
 
     def test_update_view(self):
-        url = reverse('update-view', kwargs={'pk': self.test_model_instance.pk})
+        url = reverse('update_test_model', kwargs={'pk': self.test_model_instance.pk})
         self.client.post(url, data={'test_field': 'updated_text'})
         self.assertTrue(TestModel.objects.filter(test_field='updated_text').exists())
 
