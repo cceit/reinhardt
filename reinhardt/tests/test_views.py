@@ -76,6 +76,8 @@ class TestViewPermissions(TestCase):
         if permitted:
             assert response.status_code == 200, 'Expected to be granted access, but was not'
         else:
+            # In django < 2.1 django would redirect when raising a PermissionDenied error.
+            # On Django 2.1+ it returns 403.
             if django.VERSION[0] == 2 and django.VERSION[1] == 0:
                 assert response.status_code == 302, 'Expected to be redirected, but was not.'
             else:
