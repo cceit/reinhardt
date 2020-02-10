@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'reinhardt',
     'rules',
+    'widget_tweaks',
 ]
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',

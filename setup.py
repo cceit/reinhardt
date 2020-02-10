@@ -15,6 +15,7 @@ setup(
         "django-crispy-forms>=1.8.1",
         "rules>=2.2",
         "psycopg2",
+        "django-widget-tweaks",
     ],
     classifiers=[
         'Development Status :: 0.1a',
