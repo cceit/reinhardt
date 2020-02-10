@@ -77,9 +77,9 @@ class TestViewPermissions(TestCase):
             assert response.status_code == 200, 'Expected to be granted access, but was not'
         else:
             if django.VERSION[0] == 2 and django.VERSION[1] == 0:
-                assert response.status_code == 403, 'Expected to be denied access, but was not.'
-            else:
                 assert response.status_code == 302, 'Expected to be redirected, but was not.'
+            else:
+                assert response.status_code == 403, 'Expected to be denied access, but was not.'
 
 
 class TestViewActions(TestCase):
