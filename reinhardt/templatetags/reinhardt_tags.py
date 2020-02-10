@@ -13,6 +13,7 @@ def has_obj_perm(perm, user, obj=None):
     else:
         return user.has_perm(obj.get_perm(perm), obj)
 
+
 @register.filter
 def detail_url(object):
     underscored_model_name = '_'.join(object._meta.verbose_name.lower().split(' '))
@@ -21,6 +22,7 @@ def detail_url(object):
     except NoReverseMatch:
         return None
 
+
 @register.filter
 def update_url(object):
     underscored_model_name = '_'.join(object._meta.verbose_name.lower().split(' '))
@@ -28,6 +30,7 @@ def update_url(object):
         return reverse(f'update_{underscored_model_name}', kwargs={'pk': object.pk})
     except NoReverseMatch:
         return None
+
 
 @register.filter
 def delete_url(object):
