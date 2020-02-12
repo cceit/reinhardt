@@ -30,7 +30,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         ],
     url='https://github.com/cceit/django-dx',
-    packages=find_packages(),
+    packages=find_packages(exclude='tests'),
     include_package_data=True,
     zip_safe=False,
 )
