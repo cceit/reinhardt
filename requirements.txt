@@ -5,3 +5,4 @@ openpyxl>=3.0.3
 django-tables2>=2.2.1
 rules>=2.2
 django-widget-tweaks
+django-simple-history==2.8.0

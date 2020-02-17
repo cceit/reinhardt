@@ -16,6 +16,7 @@ setup(
         "rules>=2.2",
         "psycopg2",
         "django-widget-tweaks",
+        "django-simple-history==2.8.0",
     ],
     classifiers=[
         'Development Status :: 0.1a',

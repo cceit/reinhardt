@@ -5,6 +5,8 @@ from django.db.models import Model, DateTimeField
 from django_currentuser.db.models import CurrentUserField
 
 from reinhardt.utils import get_child
+from simple_history.models import HistoricalRecords
+
 from .managers import ObjectManager
 from rules.contrib.models import RulesModelBase, RulesModelMixin
 
@@ -54,3 +56,10 @@ class AuditModel(RulesModelMixin, Model, metaclass=ReinhardtModelBase):
     @property
     def child(self):
         return get_child(self)
+
+
+class AuditHistoryModel(AuditModel, metaclass=ReinhardtModelBase):
+    history = HistoricalRecords(inherit=True)
+
+    class Meta:
+        abstract = True

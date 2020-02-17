@@ -1,8 +1,8 @@
 {% load static %}
 <div id="aside" class="app-aside fade box-shadow-x nav-expand white dark" aria-hidden="true">
-    <div class="sidenav modal-dialog dk white">
+    <div class="sidenav modal-dialog dk sidebar-theme">
         <!-- sidenav top -->
-        <div class="navbar lt">
+        <div class="navbar">
             <!-- brand -->
             <a href="index.html" class="navbar-brand">
                 <img src="{% static 'apply/images/logo.png' %}" alt="logo">
@@ -15,9 +15,6 @@
             <div class="scroll">
                 <div class="nav-border b-primary">
                     <ul class="nav">
-                        <li class="nav-header">
-                            <span class="text-xs hidden-folded">Main</span>
-                        </li>
                         {% block sidebar_links %}
                             {% if request.user.is_authenticated %}
                                 {% url 'logout' as logout_url %}

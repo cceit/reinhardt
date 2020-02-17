@@ -4742,3 +4742,9 @@ textarea.md-input {
 .grey {
   background-color: #9e9e9e;
   color: rgba(255, 255, 255, 0.85); }
+.navbar-theme {
+  background-color: #630D0D !important;
+  color: #FFFFFF;}
+.sidebar-theme {
+    background-color: #1b1b1b !important;
+    color: #FFFFFF;}

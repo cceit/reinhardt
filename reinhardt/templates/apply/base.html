@@ -36,8 +36,8 @@
             <!-- Content Start -->
             <div id="content" class="app-content box-shadow-0" role="main">
                 <!-- Header Start -->
-                <div class="content-header white  box-shadow-0" id="content-header">
-                    <div class="navbar navbar-expand-lg">
+                <div class="content-header box-shadow-0" id="content-header">
+                    <div class="navbar navbar-expand-lg navbar-theme">
                         <!-- btn to toggle sidenav on small screen -->
                         <a class="d-lg-none mx-2" data-toggle="modal" data-target="#aside" data-pjax-state="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
@@ -46,6 +46,11 @@
                         </a>
                         <!-- Page title -->
                         <div class="navbar-text nav-title flex" id="pageTitle">{% block navbar_title %}{{ page_title }}{% endblock navbar_title %}</div>
+                        <ul class="nav flex-row order-lg-2">
+                            <li class="nav-item d-flex align-items-center">
+                                <small class="d-block"><a href="/accounts/logout/" class="nav-link"><b>Logout</b></a></small>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <!-- Header End -->
