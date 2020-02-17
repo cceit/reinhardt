@@ -1,0 +1,32 @@
+{% load static %}
+<div id="aside" class="app-aside fade box-shadow-x nav-expand white dark" aria-hidden="true">
+    <div class="sidenav modal-dialog dk sidebar-theme">
+        <!-- sidenav top -->
+        <div class="navbar">
+            <!-- brand -->
+            <a href="index.html" class="navbar-brand">
+                <img src="{% static 'apply/images/logo.png' %}" alt="logo">
+                <span class="hidden-folded d-inline">Apply</span>
+            </a>
+            <!-- / brand -->
+        </div>
+        <!-- Flex nav content -->
+        <div class="flex hide-scroll">
+            <div class="scroll">
+                <div class="nav-border b-primary">
+                    <ul class="nav">
+                        {% block sidebar_links %}
+                            {% if request.user.is_authenticated %}
+                                {% url 'logout' as logout_url %}
+                                {% include 'apply/sidebar/_link.html' with url=logout_url icon='fa fa-sign-out' text='Logout'%}
+                            {% else %}
+                                {% url 'login' as login_url %}
+                                {% include 'apply/sidebar/_link.html' with url=login_url icon='fa fa-sign-in' text='Login'%}
+                            {% endif %}
+                        {% endblock %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

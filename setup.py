@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name="reinhardt",
@@ -8,9 +8,15 @@ setup(
     author='University of Oklahoma - College of Continuing Education - IT',
     license='BSD',
     install_requires=[
-        "django-currentuser",
-        "arrow",
-        "openpyxl",
+        "django-currentuser>=0.4.2",
+        "arrow>=0.15.5",
+        "openpyxl>=3.0.3",
+        "django-tables2>=2.2.1",
+        "django-crispy-forms>=1.8.1",
+        "rules>=2.2",
+        "psycopg2",
+        "django-widget-tweaks",
+        "django-simple-history==2.8.0",
     ],
     classifiers=[
         'Development Status :: 0.1a',
@@ -25,17 +31,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         ],
     url='https://github.com/cceit/django-dx',
-    packages=['reinhardt'],
+    packages=find_packages(),
     include_package_data=True,
-    package_data={
-        'reinhardt': [
-            '*.py',
-            'forms/*.py',
-            'models/*.py',
-            'utils/*.py',
-            'views/*.py',
-            'templates/*.html'
-        ],
-    },
     zip_safe=False,
 )

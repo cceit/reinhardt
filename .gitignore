@@ -1,4 +1,8 @@
 /docs/build/
 .idea/
+.eggs/*
+.tox/*
+.cache/*
+reinhardt.egg-info/*
 *.pyc
 env/

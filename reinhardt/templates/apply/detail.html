@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="box padding">
+        {% for label, value in details.items %}
+            {% include 'apply/detail_row.html' with label=label value=value.0 %}
+        {% empty %}
+            <p>There are no details to display.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

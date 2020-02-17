@@ -1,4 +1,8 @@
-Django>=1.11.19
-django-currentuser
-arrow
-openpyxl
+Django>=2.1
+django-currentuser>=0.4.2
+arrow>=0.15.5
+openpyxl>=3.0.3
+django-tables2>=2.2.1
+rules>=2.2
+django-widget-tweaks
+django-simple-history==2.8.0

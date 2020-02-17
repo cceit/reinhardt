@@ -1,0 +1,136 @@
+import unittest
+
+import django
+from django.contrib.auth.models import User
+from django.test import TestCase, Client
+from django.urls import reverse
+
+from reinhardt.tests.testapp.models import TestModel, TestRestrictedModel, TestStaffOnlyModel
+from reinhardt.tests.testapp.views import TestListView, TestDetailView
+
+
+class TestViewPermissions(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(username='jacob', email='jacob@test.com', password='top_secret')
+        self.staff_user = User.objects.create_user(username='John', email='john@test.com', password='top_secret')
+        self.staff_user.is_staff = True
+        self.staff_user.save()
+        self.test_model_instance = TestModel.objects.create(test_field='test')
+        self.test_restricted_model_instance = TestRestrictedModel.objects.create(test_field='test')
+        self.test_staff_only_model_instance = TestStaffOnlyModel.objects.create(test_field='test')
+
+    def test_list_view_permissions(self):
+        self.view_permission_tester(reverse('list-view'), self.user, True)
+        self.view_permission_tester(reverse('list-view'), self.staff_user, True)
+        self.view_permission_tester(reverse('restricted-list-view'), self.user, False)
+        self.view_permission_tester(reverse('restricted-list-view'), self.staff_user, False)
+        self.view_permission_tester(reverse('staff-only-list-view'), self.user, False)
+        self.view_permission_tester(reverse('staff-only-list-view'), self.staff_user, True)
+
+    def test_create_view_permissions(self):
+        self.view_permission_tester(reverse('create-view'), self.user, True)
+        self.view_permission_tester(reverse('create-view'), self.staff_user, True)
+        self.view_permission_tester(reverse('restricted-create-view'), self.user, False)
+        self.view_permission_tester(reverse('restricted-create-view'), self.staff_user, False)
+        self.view_permission_tester(reverse('staff-only-create-view'), self.user, False)
+        self.view_permission_tester(reverse('staff-only-create-view'), self.staff_user, True)
+
+    def test_update_view_permissions(self):
+        test_pk = self.test_model_instance.pk
+        test_restricted_pk = self.test_restricted_model_instance.pk
+        test_staff_only_pk = self.test_staff_only_model_instance.pk
+        self.view_permission_tester(reverse('update_test_model', kwargs={'pk': test_pk}), self.user, True)
+        self.view_permission_tester(reverse('update_test_model', kwargs={'pk': test_pk}), self.staff_user, True)
+        self.view_permission_tester(reverse('restricted-update-view', kwargs={'pk': test_restricted_pk}), self.user, False)
+        self.view_permission_tester(reverse('restricted-update-view', kwargs={'pk': test_restricted_pk}), self.staff_user, False)
+        self.view_permission_tester(reverse('staff-only-update-view', kwargs={'pk': test_staff_only_pk}), self.user, False)
+        self.view_permission_tester(reverse('staff-only-update-view', kwargs={'pk': test_staff_only_pk}), self.staff_user, True)
+
+    def test_detail_view_permissions(self):
+        test_pk = self.test_model_instance.pk
+        test_restricted_pk = self.test_restricted_model_instance.pk
+        test_staff_only_pk = self.test_staff_only_model_instance.pk
+        self.view_permission_tester(reverse('view_test_model', kwargs={'pk': test_pk}), self.user, True)
+        self.view_permission_tester(reverse('view_test_model', kwargs={'pk': test_pk}), self.staff_user, True)
+        self.view_permission_tester(reverse('restricted-details', kwargs={'pk': test_restricted_pk}), self.user, False)
+        self.view_permission_tester(reverse('restricted-details', kwargs={'pk': test_restricted_pk}), self.staff_user, False)
+        self.view_permission_tester(reverse('staff-only-details', kwargs={'pk': test_staff_only_pk}), self.user, False)
+        self.view_permission_tester(reverse('staff-only-details', kwargs={'pk': test_staff_only_pk}), self.staff_user, True)
+
+    def test_delete_view_permissions(self):
+        test_pk = self.test_model_instance.pk
+        test_restricted_pk = self.test_restricted_model_instance.pk
+        test_staff_only_pk = self.test_staff_only_model_instance.pk
+        self.view_permission_tester(reverse('delete_test_model', kwargs={'pk': test_pk}), self.user, True)
+        self.view_permission_tester(reverse('delete_test_model', kwargs={'pk': test_pk}), self.staff_user, True)
+        self.view_permission_tester(reverse('restricted-delete-view', kwargs={'pk': test_restricted_pk}), self.user, False)
+        self.view_permission_tester(reverse('restricted-delete-view', kwargs={'pk': test_restricted_pk}), self.staff_user, False)
+        self.view_permission_tester(reverse('staff-only-delete-view', kwargs={'pk': test_staff_only_pk}), self.user, False)
+        self.view_permission_tester(reverse('staff-only-delete-view', kwargs={'pk': test_staff_only_pk}), self.staff_user, True)
+
+    def view_permission_tester(self, url, user, permitted):
+        self.client.force_login(user)
+        response = self.client.get(url)
+
+        if permitted:
+            assert response.status_code == 200, 'Expected to be granted access, but was not'
+        else:
+            # In django < 2.1 django would redirect when raising a PermissionDenied error.
+            # On Django 2.1+ it returns 403.
+            if django.VERSION[0] == 2 and django.VERSION[1] == 0:
+                assert response.status_code == 302, 'Expected to be redirected, but was not.'
+            else:
+                assert response.status_code == 403, 'Expected to be denied access, but was not.'
+
+
+class TestViewActions(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='jacob', email='jacob@test.com', password='top_secret')
+        self.test_model_instance = TestModel.objects.create(test_field='test')
+
+    def test_list_view(self):
+        url = reverse('list-view')
+        response = self.client.get(url)
+        self.assertContains(response, TestListView().page_title)
+        self.assertContains(response, self.test_model_instance.test_field)
+
+    def test_detail_view(self):
+        url = reverse('view_test_model', kwargs={'pk': self.test_model_instance.pk})
+        response = self.client.get(url)
+        self.assertContains(response, TestDetailView().page_title)
+        self.assertContains(response, self.test_model_instance.test_field)
+
+    def test_create_view(self):
+        url = reverse('create-view')
+        self.client.post(url, data={'test_field': 'created_text'})
+        self.assertTrue(TestModel.objects.filter(test_field='created_text').exists())
+
+    def test_update_view(self):
+        url = reverse('update_test_model', kwargs={'pk': self.test_model_instance.pk})
+        self.client.post(url, data={'test_field': 'updated_text'})
+        self.assertTrue(TestModel.objects.filter(test_field='updated_text').exists())
+
+
+class TestListViewRendering(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='jacob', email='jacob@test.com', password='top_secret')
+        self.test_model_instance = TestModel.objects.create(test_field='test')
+
+    def test_detail_view_button(self):
+        url = reverse('list-view')
+        response = self.client.get(url)
+        detail_url = reverse('view_test_model', kwargs={'pk': self.test_model_instance.pk})
+        self.assertContains(response, detail_url)
+
+    def test_update_view_button(self):
+        url = reverse('list-view')
+        response = self.client.get(url)
+        update_url = reverse('update_test_model', kwargs={'pk': self.test_model_instance.pk})
+        self.assertContains(response, update_url)
+
+    def test_delete_view_button(self):
+        url = reverse('list-view')
+        response = self.client.get(url)
+        delete_url = reverse('delete_test_model', kwargs={'pk': self.test_model_instance.pk})
+        self.assertContains(response, delete_url)
