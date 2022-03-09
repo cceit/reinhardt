@@ -1,8 +1,8 @@
 import re
+import six
 import unicodedata
 
 from django.db.models.fields.related import RelatedField
-from django.utils import six
 from django.utils.encoding import force_text
 from django.utils.functional import keep_lazy
 from django.utils.safestring import mark_safe, SafeText
