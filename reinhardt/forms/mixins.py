@@ -1,9 +1,10 @@
 import inspect
 import operator
+from functools import reduce
 
 from django.db.models import Q
 
-from utils.helpers import replace_key
+from reinhardt.reinhardt.utils.helpers import replace_key
 
 
 class SearchFormMixin(object):
