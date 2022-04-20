@@ -36,7 +36,7 @@ class SearchFormMixin(object):
         q_objects = list()
         q_filters = list()
 
-        for field_name, lookup in self.Meta.field_lookups.iteritems():
+        for field_name, lookup in iter(self.Meta.field_lookups.items()):
             value = self.cleaned_data[field_name]
 
             if inspect.isfunction(lookup):
