@@ -4,7 +4,7 @@ import operator
 from django.db.models import Q
 
 from reinhardt.utils.helpers import replace_key
-
+from functools import reduce
 
 class SearchFormMixin(object):
     """
