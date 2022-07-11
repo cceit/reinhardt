@@ -64,7 +64,7 @@ def xlsx_response(filename, table, max_width=118, max_height=90):
             ws_cell.value = cell
 
             if type(cell) in [str]:
-                cell_str = ws_cell.value.encode('utf-8')
+                cell_str = ws_cell.value
             elif type(cell) in [float]:
                 ws_cell.number_format = '0.00'
                 cell_str = str(ws_cell.value)
