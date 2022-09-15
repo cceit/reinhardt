@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="reinhardt",
-    version="0.0.2",
+    version="0.0.3",
     author_email='devhelp@cce.ou.edu',
     description='A collection of Django tools created for ease of use and rapid development.',
     author='University of Oklahoma - Digital Innovations Group',
@@ -13,7 +13,7 @@ setup(
         "openpyxl",
     ],
     classifiers=[
-        'Development Status :: 0.0.2',
+        'Development Status :: 0.0.3',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
@@ -33,6 +33,7 @@ setup(
             'forms/*.py',
             'models/*.py',
             'utils/*.py',
+            'utils/management/commands/*.py',
             'views/*.py',
             'templatetags/*.py',
             'templates/*.html'
