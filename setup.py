@@ -33,6 +33,7 @@ setup(
             'forms/*.py',
             'models/*.py',
             'utils/*.py',
+            'utils/management/*.py',
             'utils/management/commands/*.py',
             'views/*.py',
             'templatetags/*.py',
