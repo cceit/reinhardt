@@ -2,18 +2,19 @@ from setuptools import setup
 
 setup(
     name="reinhardt",
-    version="0.0.3",
-    author_email='devhelp@cce.ou.edu',
+    version="1.1.0",
+    author_email='devhelp@ou.edu',
     description='A collection of Django tools created for ease of use and rapid development.',
     author='University of Oklahoma - Digital Innovations Group',
     license='BSD',
     install_requires=[
-        "django-currentuser",
-        "arrow",
-        "openpyxl",
+        "Django>=4.2"
+        "django-currentuser>=0.5.3",
+        "arrow>=1.2.3",
+        "openpyxl>=3.1.2",
     ],
     classifiers=[
-        'Development Status :: 0.0.3',
+        'Development Status :: 1.1.0',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
@@ -24,7 +25,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Application Frameworks',
         'Topic :: Software Development :: Libraries :: Python Modules',
         ],
-    url='https://github.com/cceit/django-dx',
+    url='https://github.com/cceit/reinhardt/',
     packages=['reinhardt'],
     include_package_data=True,
     package_data={
@@ -36,7 +37,8 @@ setup(
             'utils/management/commands/*.py',
             'views/*.py',
             'templatetags/*.py',
-            'templates/*.html'
+            'templates/*.html',
+            'templates/forms/*.html'
         ],
     },
     zip_safe=False,

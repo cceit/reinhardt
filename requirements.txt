@@ -1,4 +1,4 @@
-Django>=1.11.19
+Django>=4.2
 django-currentuser
 arrow
 openpyxl

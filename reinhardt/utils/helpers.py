@@ -3,7 +3,7 @@ import six
 import unicodedata
 
 from django.db.models.fields.related import RelatedField
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.functional import keep_lazy
 from django.utils.safestring import mark_safe, SafeText
 
@@ -26,10 +26,10 @@ def snakify(value):
             u'polls_report_may_1_2016'
 
     """
-    value = force_text(value)
+    value = force_str(value)
     value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
-    value = re.sub('[^\w\s-]', '', value).strip().lower()
-    return mark_safe(re.sub('[-\s]+', '_', value))
+    value = re.sub(r'[^\w\s-]', '', value).strip().lower()
+    return mark_safe(re.sub(r'[-\s]+', '_', value))
 
 
 snakify = keep_lazy(snakify, six.text_type, SafeText)
@@ -76,7 +76,7 @@ def hasfield(model, field_name):
      model or its related models
 
     :param Model model: Django Model object
-    :param string field_name: attribute string, dotted or dunderscored.
+    :param string field_name: attribute string, dotted or underscored.
      example: 'user.first_name' or 'user__first_name'
 
     :returns: Field object or False
@@ -96,6 +96,7 @@ def hasfield(model, field_name):
     """
 
     field_names = field_name.replace('__', '.').split('.')
+    # noinspection PyProtectedMember
     model_fields = model._meta.fields
 
     for idx, field_name in enumerate(field_names):
@@ -106,6 +107,7 @@ def hasfield(model, field_name):
 
         # If field is a ForeignKey, ManyToManyField, or OneToOneField, look through related model
         if isinstance(related_field, RelatedField):
+            # noinspection PyProtectedMember
             model_fields = related_field.related_model._meta.fields
 
     return False

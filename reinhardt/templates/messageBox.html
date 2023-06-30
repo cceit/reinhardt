@@ -1,0 +1,17 @@
+{% for message in messages %}
+    {% if message.level_tag == 'debug' %}
+        {% include 'alert.html' with type='dark' message=message %}
+    {% endif %}
+    {% if message.level_tag == 'info' %}
+        {% include 'alert.html' with type='primary' message=message %}
+    {% endif %}
+    {% if message.level_tag == 'success' %}
+        {% include 'alert.html' with type='success' message=message %}
+    {% endif %}
+    {% if message.level_tag == 'warning' %}
+        {% include 'alert.html' with type='warning' message=message %}
+    {% endif %}
+    {% if message.level_tag == 'error' %}
+        {% include 'alert.html' with type='danger' message=message %}
+    {% endif %}
+{% endfor %}

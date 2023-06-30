@@ -1,0 +1,5 @@
+{% load crispy_forms_tags %}
+{% include 'forms/form_non_field_errors.html' %}
+{% for field in form %}
+    {% include 'forms/form_field.html' %}
+{% endfor %}

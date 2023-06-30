@@ -1,0 +1,21 @@
+<!-- template_helpers must be a registered templatetag library -->
+{% load template_helpers %}
+
+<!--
+ Assumptions:
+ the form is for a single object.
+ touchnet is variable added to the context and is a dictionary with keys url and site_id.
+ object has fields amount and id.
+ -->
+<form class="d-inline" method="post" action="{{ touchnet.url }}">
+    {% csrf_token %}
+    <input type="hidden" name="AMT" value="{{ object.amount }}"/>
+    <input type="hidden" name="UPAY_SITE_ID" value="{{ touchnet.site_id }}"/>
+    <input type="hidden" name="EXT_TRANS_ID" value="{{ object.id }}"/>
+    <input type="hidden" name="VALIDATION_KEY"
+           value="{% get_validation_key object.id object.amount %}"/>
+    <button type="submit" class="btn btn-primary">
+        <i class="fa fa-sack-dollar"></i>
+        Pay Online
+    </button>
+</form>
