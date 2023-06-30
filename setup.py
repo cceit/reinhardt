@@ -8,7 +8,7 @@ setup(
     author='University of Oklahoma - Digital Innovations Group',
     license='BSD',
     install_requires=[
-        "Django>=4.2"
+        "Django>=4.2",
         "django-currentuser>=0.5.3",
         "arrow>=1.2.3",
         "openpyxl>=3.1.2",
